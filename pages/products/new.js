@@ -1,6 +1,10 @@
 import Layout from "@/components/layout";
+import { useState } from "react";
 
 export default function NewProduct() {
+    const [title,setTitle] = useState('');
+    const [description,setDescription] = useState('');
+    const [price,setPrice] = useState('');
     return (
         <Layout>
             <span className="w-full">
@@ -11,7 +15,8 @@ export default function NewProduct() {
             <textarea placeholder="description"></textarea>
             <label>Price (in USD) </label>
             <input type="number" placeholder="price"/>
+            <button className="btn-primary">Save</button>
             </span>
         </Layout>
-    )
+    );
 }
