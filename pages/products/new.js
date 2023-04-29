@@ -1,22 +1,46 @@
 import Layout from "@/components/layout";
+import axios from "axios";
 import { useState } from "react";
 
 export default function NewProduct() {
     const [title,setTitle] = useState('');
     const [description,setDescription] = useState('');
     const [price,setPrice] = useState('');
+    function createProduct(){
+        axios.post('')
+    }
     return (
         <Layout>
+            <form onSubmit={createProduct}>
             <span className="w-full">
             <h1> New Product</h1>
             <label>Products Name</label>
-            <input type="text" placeholder="product name"/>
+            <input 
+            type="text" 
+            placeholder="product name" 
+            value={title} 
+            onChange={ev => setTitle(ev.target.value)}
+            />
             <label>Description</label>
-            <textarea placeholder="description"></textarea>
+            <textarea 
+            placeholder="description"
+            value={description}
+            onChange={ev => setDescription(ev.target.value)}
+            />
             <label>Price (in USD) </label>
-            <input type="number" placeholder="price"/>
-            <button className="btn-primary">Save</button>
+            <input 
+            type="number"
+            placeholder="price"
+            value={price}
+            onChange={ev => setPrice(ev.target.value)}
+            />
+            <button 
+            type="submit"
+            className="btn-primary">
+            Save</button>
             </span>
+            </form>
+            
         </Layout>
     );
 }
