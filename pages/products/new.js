@@ -7,7 +7,8 @@ export default function NewProduct() {
     const [description,setDescription] = useState('');
     const [price,setPrice] = useState('');
     function createProduct(){
-        axios.post('')
+        const  data = {title,description,price};
+        axios.post('/api/products', data)
     }
     return (
         <Layout>
