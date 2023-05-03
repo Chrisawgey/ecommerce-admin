@@ -16,7 +16,7 @@ export default function NewProduct() {
             <form onSubmit={createProduct}>
             <span className="w-full">
             <h1> New Product</h1>
-            <label>Products Name</label>
+            <label>Product Name</label>
             <input 
             type="text" 
             placeholder="product name" 
