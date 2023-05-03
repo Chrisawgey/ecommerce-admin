@@ -7,4 +7,4 @@ const ProductSchema = new Schema({
 
 });
 
-export const Product = model('product', ProductSchema);
+export const Product = model('Product', ProductSchema);
