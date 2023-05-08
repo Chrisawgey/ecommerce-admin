@@ -1,7 +1,14 @@
 import Layout from "@/components/layout";
+import axios from "axios";
 import Link from "next/link";
+import { useEffect } from "react";
 
 export default function Products() {
+  useEffect(() => {
+    axios.get('/products').then(response => {
+      console.log(response.data);
+    })
+  }, []);
   return (
     <Layout>
       <Link href={"/products/new"}>
