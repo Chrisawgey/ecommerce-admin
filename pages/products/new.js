@@ -18,7 +18,7 @@ export default function NewProduct() {
 
     }
     if (goToProducts) {
-        router.push('/products');
+        router.push('/api/products');
     }
     return (
         <Layout>

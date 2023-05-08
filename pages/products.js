@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 export default function Products() {
   useEffect(() => {
-    axios.get('/products').then(response => {
+    axios.get('/api/products').then(response => {
       console.log(response.data);
     })
   }, []);
