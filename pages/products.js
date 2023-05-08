@@ -15,6 +15,24 @@ export default function Products() {
       <Link href={"/products/new"}>
         <span className="bg-blue-900 text-white rounded-md py-1 px-2">Add new product</span>
       </Link>
+      <table className="basic">
+        <thead>
+          <tr>
+            <td>Product name</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map(product => (
+            <tr>
+              <td>{product.title}</td>
+              <td>
+                buttons
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </Layout>
   );
 }
