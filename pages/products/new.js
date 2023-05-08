@@ -1,5 +1,6 @@
 import Layout from "@/components/layout";
 import axios from "axios";
+import { redirect } from "next/dist/server/api-utils";
 import { useState } from "react";
 
 export default function NewProduct() {
@@ -11,7 +12,11 @@ export default function NewProduct() {
         ev.preventDefault();
         const  data = {title,description,price};
         await axios.post('/api/products', data)
+        setGoToProducts(true);
 
+    }
+    if (goToProducts) {
+        return redirect('/products');
     }
     return (
         <Layout>
