@@ -14,7 +14,7 @@ export default function Products() {
     <Layout>
       <Link href={"/products/new"}>
         <span className="bg-blue-900 text-white rounded-md py-1 px-2">Add new product</span>
-      </Link>
+      
       <table className="basic">
         <thead>
           <tr>
@@ -33,6 +33,7 @@ export default function Products() {
           ))}
         </tbody>
       </table>
+      </Link>
     </Layout>
   );
 }
