@@ -30,6 +30,7 @@ export default function Products() {
                 buttons
               </td>
             </tr>
+            
           ))}
         </tbody>
       </table>
