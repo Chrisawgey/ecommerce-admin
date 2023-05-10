@@ -25,7 +25,6 @@ export default function ProductForm ({
     return (
             <form onSubmit={createProduct}>
             <span className="w-full">
-            <h1> New Products</h1>
             <label>Product Name</label>
             <input 
             type="text" 
