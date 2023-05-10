@@ -14,6 +14,7 @@ export default function Products() {
     <Layout>
       <Link className="bg-blue-900 text-white rounded-md py-1 px-2" 
       href={'/products/new'}>Add new product</Link>
+
       <table className="basic mt-2">
         <thead>
           <tr>
@@ -26,7 +27,9 @@ export default function Products() {
             <tr>
               <td>{product.title}</td>
               <td>
-                buttons
+                <Link href={'/products/'+product._id}>
+                Edit
+                </Link>
              </td>
             </tr>
              ))}
