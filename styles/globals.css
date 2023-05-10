@@ -22,5 +22,5 @@ table.basic{
     @apply w-full;
 }
 table.basic tr td{
-    @apply border;
+    @apply border p-1;
 }

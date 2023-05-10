@@ -22,7 +22,7 @@ export default function Products() {
             <td></td>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="basicz">
           {products.map(product => (
             <tr>
               <td>{product.title}</td>
@@ -30,8 +30,7 @@ export default function Products() {
                 buttons
               </td>
             </tr>
-            
-          ))}
+             ))}
         </tbody>
       </table>
       </Link>
