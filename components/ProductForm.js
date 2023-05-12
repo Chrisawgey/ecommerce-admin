@@ -30,10 +30,13 @@ export default function ProductForm ({
         router.push('/products');
     }
     ///this is the function to uplaod a pic
-    function uplaodImages(ev) {
+    async function uplaodImages(ev) {
         const files = ev.target?.files;
         if (files?.length > 0) {
-
+            const data = new FormData();
+            files.forEach(file => data.append('file', file));
+            const res = await axios.post('/api/upload', data);
+            console.log(res.data);
         }
     }
     return (
