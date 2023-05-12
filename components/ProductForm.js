@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {useRouter} from "next/router"
 import axios from "axios";
+import { PropagateLoader } from "react-spinners";
 
 export default function ProductForm ({
     _id,
@@ -14,6 +15,7 @@ export default function ProductForm ({
     const [images,setImages] = useState(existingImages || '');
     const [price,setPrice] = useState(existingPrice || '');
     const [goToProducts,setGoToProducts] = useState(false);
+    const [isUploading,SetIsUploading] = useState(false);
     const router = useRouter();
     async function saveProduct(ev){
         ev.preventDefault();
@@ -34,6 +36,7 @@ export default function ProductForm ({
     async function uplaodImages(ev) {
         const files = ev.target?.files;
         if (files?.length > 0) {
+            SetIsUploading(true);
             const data = new FormData();
             for (const file of files) {
                 data.append('file', file);
@@ -42,6 +45,7 @@ export default function ProductForm ({
             setImages(oldImages => {
                 return [...oldImages, ...res.data.links];
             });
+            SetIsUploading(false);
         }
     }
     return (
@@ -62,6 +66,11 @@ export default function ProductForm ({
                     <img src={link} alt="" className="rounded-lg"/>
                 </div>
             ))}
+            {isUploading && (
+                <div className="h-24">
+                <PropagateLoader/>
+                </div>
+            )}
                 <label className=" w-24 h-24 cursor-pointer flex items-center justify-center text-sm gap-1
                 text-gray-500 rounded-lg bg-gray-200">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -72,9 +81,6 @@ export default function ProductForm ({
                 </div>
                 <input type="file" onChange={uplaodImages} className="hidden"/>
                 </label>
-                {!images?.length && (
-                    <div>No photos available for this product</div>
-                )}
             </div>
             <label>Description</label>
             <textarea 
