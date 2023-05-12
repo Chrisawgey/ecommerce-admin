@@ -60,14 +60,14 @@ export default function ProductForm ({
             <label>
                 Photos
             </label>
-            <div className="mb-2 flex flex-wrap gap-2">
+            <div className="mb-2 flex flex-wrap gap-1">
             {!!images?.length && images.map(link => (
                 <div key={link} className="h-24">
                     <img src={link} alt="" className="rounded-lg"/>
                 </div>
             ))}
             {isUploading && (
-                <div className="h-24">
+                <div className="h-24 flex items-center">
                 <PropagateLoader/>
                 </div>
             )}
