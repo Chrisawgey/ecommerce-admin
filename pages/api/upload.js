@@ -1,6 +1,9 @@
 import multiparty from 'multiparty';
 import {PutObjectCommand, S3Client} from '@aws-sdk/client-s3';
-const bucketName = 'chriz-next-ecommerce'
+import fs from 'fs';
+import mime from 'mime-types';
+const bucketName = 'chriz-next-ecommerce';
+
 
 export default async function handle(req,res) {
         const form = new multiparty.Form();
@@ -10,6 +13,7 @@ export default async function handle(req,res) {
             resolve({fields,files});
         });
     });
+    const links = [];
     console.log('length:', files.file.length);
     const client = new S3Client({
         region: 'us-east-2',
@@ -18,12 +22,22 @@ export default async function handle(req,res) {
             secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
         },  
     });
-    client.send(new PutObjectCommand({
-        Bucket: bucketName,
-    }));
-    return res.json('ok');
-}
-
-export const config = {
-    api: {bodyParser: false},    
-};
+    for (const file of files.file) {
+        const ext = file.originalFilename.split('.').pop();
+        const newFilename = Date.now() + '.' + ext;
+        await client.send(new PutObjectCommand({
+          Bucket: bucketName,
+          Key: newFilename,
+          Body: fs.readFileSync(file.path),
+          ACL: 'public-read',
+          ContentType: mime.lookup(file.path),
+        }));
+        const link = `https://${bucketName}.s3.amazonaws.com/${newFilename}`;
+        links.push(link);
+      }
+      return res.json({links});
+    }
+    
+    export const config = {
+      api: {bodyParser: false},
+    };
