@@ -7,16 +7,17 @@ export default function ProductForm ({
     title:existingTitle,
     description:existingDescription,
     price:existingPrice,
-    images,
+    images:existingImages,
     }) {
     const [title,setTitle] = useState(existingTitle || '');
     const [description,setDescription] = useState(existingDescription || '');
+    const [images,setImages] = useState(existingImages || '');
     const [price,setPrice] = useState(existingPrice || '');
     const [goToProducts,setGoToProducts] = useState(false);
     const router = useRouter();
     async function saveProduct(ev){
         ev.preventDefault();
-        const data = {title,description,price};
+        const data = {title,description,price,images};
         if (_id) {
             //update
             await axios.put('/api/products', {...data,_id});
@@ -38,7 +39,9 @@ export default function ProductForm ({
                 data.append('file', file);
             }
             const res = await axios.post('/api/upload', data);
-            console.log(res.data);
+            setImages(oldImages => {
+                return [...oldImages, ...res.data.links];
+            });
         }
     }
     return (
@@ -53,8 +56,13 @@ export default function ProductForm ({
             <label>
                 Photos
             </label>
-            <div className="mb-2">
-                <label className="w-24 h-24 cursor-pointer flex items-center justify-center text-sm gap-1
+            <div className="mb-2 flex flex-wrap gap-2">
+            {!!images?.length && images.map(link => (
+                <div key={link} className="h-24">
+                    <img src={link} alt="" className="rounded-lg"/>
+                </div>
+            ))}
+                <label className=" w-24 h-24 cursor-pointer flex items-center justify-center text-sm gap-1
                 text-gray-500 rounded-lg bg-gray-200">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 7.5h-.75A2.25 2.25 0 004.5 9.75v7.5a2.25 2.25 0 002.25 2.25h7.5a2.25 2.25 0 002.25-2.25v-7.5a2.25 2.25 0 00-2.25-2.25h-.75m0-3l-3-3m0 0l-3 3m3-3v11.25m6-2.25h.75a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-7.5a2.25 2.25 0 01-2.25-2.25v-.75" />
