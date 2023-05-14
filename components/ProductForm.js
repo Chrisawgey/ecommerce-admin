@@ -49,8 +49,8 @@ export default function ProductForm ({
             SetIsUploading(false);
         }
     }
-    function updateImagesOrder() {
-        console.log(arguments);
+    function updateImagesOrder(images) {
+        setImages(images);
     }
     return (
             <form onSubmit={saveProduct}>
