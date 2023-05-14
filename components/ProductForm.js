@@ -49,6 +49,9 @@ export default function ProductForm ({
             SetIsUploading(false);
         }
     }
+    function updateImagesOrder() {
+        console.log(arguments);
+    }
     return (
             <form onSubmit={saveProduct}>
             <span className="w-full">
@@ -62,11 +65,17 @@ export default function ProductForm ({
                 Photos
             </label>
             <div className="mb-2 flex flex-wrap gap-1">
+            <ReactSortable
+            list={images}
+            className="flex flex-wrap gap-1"
+             setList={updateImagesOrder}>
             {!!images?.length && images.map(link => (
                 <div key={link} className="h-24">
-                    <img src={link} alt="" className="rounded-lg"/>
+                    <img src={link} alt=""
+                     className="rounded-lg"/>
                 </div>
             ))}
+            </ReactSortable>
             {isUploading && (
                 <div className="h-24 flex items-center">
                 <Spinner />
