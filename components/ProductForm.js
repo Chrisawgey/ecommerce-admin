@@ -1,7 +1,8 @@
 import {useState} from "react";
 import {useRouter} from "next/router"
 import axios from "axios";
-import { PropagateLoader } from "react-spinners";
+import Spinner from "@/components/Spinner";
+import { ReactSortable } from "react-sortablejs";
 
 export default function ProductForm ({
     _id,
@@ -60,7 +61,7 @@ export default function ProductForm ({
             <label>
                 Photos
             </label>
-            <div className="mb-2 flex flex-wrap gap-2">
+            <div className="mb-2 flex flex-wrap gap-1">
             {!!images?.length && images.map(link => (
                 <div key={link} className="h-24">
                     <img src={link} alt="" className="rounded-lg"/>
@@ -68,7 +69,7 @@ export default function ProductForm ({
             ))}
             {isUploading && (
                 <div className="h-24 flex items-center">
-                <PropagateLoader/>
+                <Spinner />
                 </div>
             )}
                 <label className=" w-24 h-24 cursor-pointer flex items-center justify-center text-sm gap-1
