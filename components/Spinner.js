@@ -1,7 +1,7 @@
-import { RotateLoader } from "react-spinners";
+import { HashLoader } from "react-spinners";
 
 export default function Spinner() {
     return(
-        <RotateLoader color={'#29425B'} speedMultiplier={1} />
+        <HashLoader color={'#29425B'} speedMultiplier={1} />
     );
 }
