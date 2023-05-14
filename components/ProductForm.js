@@ -60,7 +60,7 @@ export default function ProductForm ({
             <label>
                 Photos
             </label>
-            <div className="mb-2 flex flex-wrap gap-1">
+            <div className="mb-2 flex flex-wrap gap-2">
             {!!images?.length && images.map(link => (
                 <div key={link} className="h-24">
                     <img src={link} alt="" className="rounded-lg"/>
