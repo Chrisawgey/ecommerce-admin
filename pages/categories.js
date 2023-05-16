@@ -16,7 +16,7 @@ export default function Categories() {
     }
     async function saveCategories(ev){
         ev.preventDefault();
-        await axios.post('/api/categories' , {name});
+        await axios.post('/api/categories' , {name,parentCategory});
         setName('');
         fetchCategories();
     }
