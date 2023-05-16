@@ -4,7 +4,8 @@ import { useState } from "react";
 
 export default function Categories() {
     const [ name,setName ] = useState ('');
-    async function saveCategories(){
+    async function saveCategories(ev){
+        ev.preventDefault();
         await axios.post('/api/categories' , {name});
         setName('');
     }
