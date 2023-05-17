@@ -56,7 +56,10 @@ export default function Categories() {
                             <td>{category.name}</td>
                             <td>{category?.parent?.name}</td>
                             <td>
-                                <button className="btn-primary mr-1">Edit</button>
+                                <button 
+                                onClick={() => editCategory(category)}
+                                className="btn-primary mr-1">
+                                Edit</button>
                                 <button className="btn-primary">Delete</button>
                             </td>
                         </tr>
