@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function Categories() {
+    const [editedCategory, setEditedCategory] = useState(null);
     const [ name,setName ] = useState('');
     const [parentCategory,setParentCategory] = useState('');
     const [ categories,setCategories ] = useState([]);
@@ -20,10 +21,18 @@ export default function Categories() {
         setName('');
         fetchCategories();
     }
+    function editCategory(category){
+        setEditedCategory(category);
+
+    }
     return(
         <Layout>
             <h1>Categories</h1>
-            <label>New category name</label>
+            <label>
+            {editedCategory 
+             ? `Edit category ${editedCategory.name}` 
+             : 'Create new category'}
+             </label>
             <form onSubmit={saveCategories} className="flex gap-1">
             <input 
             className="mb-0" 
@@ -59,7 +68,8 @@ export default function Categories() {
                                 <button 
                                 onClick={() => editCategory(category)}
                                 className="btn-primary mr-1">
-                                Edit</button>
+                                Edit
+                                </button>
                                 <button className="btn-primary">Delete</button>
                             </td>
                         </tr>
