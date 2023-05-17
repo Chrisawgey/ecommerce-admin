@@ -45,15 +45,20 @@ export default function Categories() {
             <table className="basic mt-4">
                 <thead>
                     <tr>
-                        <td>
-                           Category Name 
-                        </td>
+                        <td>Category Name</td>
+                        <td>Parent Category</td>
+                        <td></td>
                     </tr>
                 </thead>
                 <tbody>
                     {categories.length > 0 && categories.map(category => (
                         <tr>
                             <td>{category.name}</td>
+                            <td>{category?.parent?.name}</td>
+                            <td>
+                                <button className="btn-primary mr-1">Edit</button>
+                                <button className="btn-primary">Delete</button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
