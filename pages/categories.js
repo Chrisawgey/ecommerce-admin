@@ -15,14 +15,22 @@ export default function Categories() {
             setCategories(result.data);
         });
     }
-    async function saveCategories(ev){
+    async function saveCategory(ev){
         ev.preventDefault();
-        await axios.post('/api/categories' , {name,parentCategory});
+        const data = {name,parentCategory}
+        if (editedCategory) {
+            data._id = editedCategory._id;
+            await axios.put('/api/categories', data);
+        } else {
+            await axios.post('/api/categories', data);
+        }
         setName('');
         fetchCategories();
     }
     function editCategory(category){
         setEditedCategory(category);
+        setName(category.name);
+        setParentCategory(category.parent?._id);
 
     }
     return(
@@ -33,7 +41,7 @@ export default function Categories() {
              ? `Edit category ${editedCategory.name}` 
              : 'Create new category'}
              </label>
-            <form onSubmit={saveCategories} className="flex gap-1">
+            <form onSubmit={saveCategory} className="flex gap-1">
             <input 
             className="mb-0" 
             type="text" 
