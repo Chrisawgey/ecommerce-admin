@@ -44,8 +44,12 @@ function Categories({swal}) {
             confirmButtonText: 'Yes, Delete!',
             confirmButtonColor: '#d55',
             reverseButtons: true, 
-        }).then(result => {
-            console.log({result});
+        }).then(async result => {
+            if (result.isConfirmed) {
+                const {_id} = category;
+                await axios.delete('/api/categories?_id='+_id);
+                fetchCategories();
+            }
         });
     }
     return(
