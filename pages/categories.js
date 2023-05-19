@@ -60,22 +60,25 @@ function Categories({swal}) {
              ? `Edit category ${editedCategory.name}` 
              : 'Create new category'}
              </label>
-            <form onSubmit={saveCategory} className="flex gap-1">
+            <form onSubmit={saveCategory}>
+            <div className="flex gap-1">
             <input 
-            className="mb-0" 
             type="text" 
             placeholder={'Category Name'}
             onChange={ev => setName(ev.target.value)}
             value={name}/>
             <select 
-            onChange={ev => setParentCategory(ev.target.value)}         
-            className="mb-0" 
+            onChange={ev => setParentCategory(ev.target.value)}
             value={parentCategory}>
                 <option value="">No Parent Category</option>
                 {categories.length > 0 && categories.map(category => (
                         <option value={category._id}>{category.name}</option>
                     ))}
             </select>
+            </div>
+            <div>
+                
+            </div>
             <button type="submit" className="btn-primary">Save</button>
             </form>
             <table className="basic mt-4">
