@@ -37,7 +37,7 @@ function Categories({swal}) {
     }
     function deleteCategory(category){
         swal.fire({
-            title: 'Danger Zone',
+            title: 'Danger Zone!',
             text: `Do you want to delete ${category.name}?`,
             showCancelButton: true,
             cancelButtonText: 'Cancel',
@@ -77,7 +77,10 @@ function Categories({swal}) {
             </select>
             </div>
             <div>
-
+              <label className="block">Properties</label>
+              <button className="btn-default text-sm">
+              Add new property
+              </button>
             </div>
             <button type="submit" className="btn-primary">Save</button>
             </form>
