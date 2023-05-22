@@ -79,6 +79,14 @@ function Categories({swal}) {
             return properties;
         });
     }
+    //function to hnadle a value change
+    function handlePropertyValuesChange(index,property,newValues){
+        setProperties(prev => {
+            const properties = [...prev];
+            properties[index].values = newValues;
+            return properties;
+        });
+    }
     return(
         <Layout>
             <h1>Categories</h1>
@@ -105,6 +113,7 @@ function Categories({swal}) {
             </div>
             <div className="mb-2">
               <label className="block">Properties</label>
+
               <button 
               onClick={addProperty}
               type="button" 
@@ -115,9 +124,14 @@ function Categories({swal}) {
                 <div className="flex gap-1">
                 <input type="text" 
                        value={property.name} 
-                       onChange={ev => handlePropertyNameChange(index,property,ev.target.value)}
+                       onChange={ev => handlePropertyNameChange(
+                        index,property,ev.target.value
+                        )}
                        placeholder="property name (example: color)"/>
                 <input type="text" 
+                        onChange={ev => handlePropertyValuesChange(
+                            index,property,ev.target.value
+                            )}
                        value={property.values}
                        placeholder="values, comma seperated"/>
                 </div>
