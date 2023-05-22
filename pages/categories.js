@@ -9,14 +9,20 @@ function Categories({swal}) {
     const [parentCategory,setParentCategory] = useState('');
     const [ categories,setCategories ] = useState([]);
     const [properties,setProperties] = useState([]);
+
+    // Fetch Categories on component mount
     useEffect(() => {
         fetchCategories();
     }, []);
+
+    // Function to fetch categories from the server
     function fetchCategories() {
         axios.get('/api/categories').then(result => {
             setCategories(result.data);
         });
     }
+
+    // Function to save the category
     async function saveCategory(ev){
         ev.preventDefault();
         const data = {name,parentCategory}
@@ -30,12 +36,16 @@ function Categories({swal}) {
         setName('');
         fetchCategories();
     }
+
+    // Function to edit category 
     function editCategory(category){
         setEditedCategory(category);
         setName(category.name);
         setParentCategory(category.parent?._id);
 
     }
+
+    //function to deleter a category 
     function deleteCategory(category){
         swal.fire({
             title: 'Danger Zone!',
@@ -53,13 +63,21 @@ function Categories({swal}) {
             }
         });
     }
+
+    //function to add a new prpoerty 
     function addProperty() {
         setProperties(prev => {
             return [... prev, {name:'',values:''}]
         });
     }
-    function handlePropertyNameChange(property){
 
+    //function to handle a property name change
+    function handlePropertyNameChange(index,property,newName){
+        setProperties(prev => {
+            const properties = [...prev];
+            properties[index].name = newName;
+            return properties;
+        });
     }
     return(
         <Layout>
@@ -137,7 +155,7 @@ function Categories({swal}) {
         </Layout>
     );
 }
-
+// JSX for rendering the component 
 export default withSwal (({swal}, ref) => (
     <Categories swal={swal}/>
 ));
