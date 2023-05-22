@@ -25,7 +25,14 @@ function Categories({swal}) {
     // Function to save the category
     async function saveCategory(ev){
         ev.preventDefault();
-        const data = {name,parentCategory,properties}
+        const data = {
+            name,
+            parentCategory,
+            properties: properties.map(p => ({
+                name:p.name,
+                values:p.values.split(','),
+            })),
+        };
         if (editedCategory) {
             data._id = editedCategory._id;
             await axios.put('/api/categories', data);
