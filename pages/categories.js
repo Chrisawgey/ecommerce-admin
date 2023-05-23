@@ -218,6 +218,6 @@ function Categories({swal}) {
     );
 }
 // JSX for rendering the component 
-export default withSwal (({swal}, ref) => (
-    <Categories swal={swal}/>
-));
+export default withSwal(({ swal }, ref) => (
+    <Categories swal={swal} />
+  ));       

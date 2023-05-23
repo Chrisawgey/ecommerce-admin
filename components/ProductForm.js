@@ -4,7 +4,7 @@ import axios from "axios";
 import Spinner from "@/components/Spinner";
 import { ReactSortable } from "react-sortablejs";
 
-export default function ProductForm ({
+export default function ProductForm({
     _id,
     title:existingTitle,
     description:existingDescription,
@@ -96,12 +96,12 @@ export default function ProductForm ({
             <select value={category} 
             onChange={ev => setCategory(ev.target.value)}>
                 <option value="">Uncategorized</option>
-                {propertiesToFill.length > 0 && categories.map(c => (
+                {categories.length > 0 && categories.map(c => (
                     <option value={c._id}>{c.name}</option>
                 ))}
 
             </select>
-            {categories.length > 0 && propertiesToFill.map(p => (
+            {propertiesToFill.length > 0 && propertiesToFill.map(p => (
                 <div className="flex gap-1">
                 <div>{p.name}</div>
                 <select value={productProperties[p.name]} 
