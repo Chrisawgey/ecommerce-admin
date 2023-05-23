@@ -63,7 +63,7 @@ export default function ProductForm ({
     function updateImagesOrder(images) {
         setImages(images);
     }
-    function setProductProp(propName,) {
+    function setProductProp(propName,value) {
         setProductProperties(prev => {
             const newProductProps = {...prev};
             newProductProps[propName] = value;
