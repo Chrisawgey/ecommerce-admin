@@ -3,9 +3,9 @@ import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 
-const adminEmails = ['chris202812@gmail.com']
+const adminEmails = ['chris202812@gmail.com'];
 
-export default NextAuth({
+export const authOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
@@ -22,4 +22,6 @@ export default NextAuth({
         }
       },
     },
-})
+}
+
+export default NextAuth(authOptions);
