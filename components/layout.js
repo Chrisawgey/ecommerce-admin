@@ -13,11 +13,14 @@ export default function Layout({children}) {
     );
   }
   return (
-    <div className="bg-bgGray min-h-screen flex">
+    <div className="bg-bgGray min-h-screen ">
+    <button>test</button>
+       <div className="flex">
       <Nav />
        <div className="bg-white  grow mt-2 mr-2 mb-2 rounded-lg p-4">
         {children}
        </div>
+     </div>
     </div>
   );
 }
