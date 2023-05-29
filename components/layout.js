@@ -29,7 +29,7 @@ export default function Layout({children}) {
   </div>
      <div className="flex">
       <Nav show={showNav}/>
-       <div className="bg-white  grow mt-2 mr-2 mb-2 rounded-lg p-4">
+       <div className="flex-grow p-4">
         {children}
        </div>
      </div>
