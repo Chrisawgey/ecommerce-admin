@@ -6,7 +6,7 @@ img{
     max-height: 100%;
 }
 input, textarea, select{
-    @apply border-2 border-gray-300 rounded-md px-1 w-full;
+    @apply border border-gray-200 rounded-sm px-1 w-full py-2 px-3;
     @apply mb-2;
 }
 input:focus, textarea:focus, select:focus{
@@ -25,13 +25,13 @@ table.basic{
     @apply w-full bg-white rounded-sm shadow-md;
 }
 table.basic thead tr td{
-    @apply text-sm text-gray-600 uppercase border-b border-gray-200;
+    @apply text-sm text-gray-600 uppercase border-b border-gray-200 px-4 py-2;
 }
 table.basic tr td{
-    @apply p-1;
+    @apply px-4 py-1;
 }
 table.basic a{
-    @apply bg-blue-900 text-white text-sm py-2 px-2 rounded-md inline-flex gap-1 mr-1;
+    @apply text-white px-4  rounded-sm inline-flex mx-1 items-center gap-1 bg-gray-700 text-sm py-1;
 }
 .btn-default, .btn-red{
     @apply px-4 py-1 rounded-md;
