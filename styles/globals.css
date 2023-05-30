@@ -16,13 +16,13 @@ h1{
     @apply text-blue-900 mb-2 text-xl;
 }
 label{
-    @apply text-blue-900 bg-white;
+    @apply text-blue-900;
 }
 .btn-primary{
     @apply bg-primary text-white px-4 py-1 rounded-sm;
 }
 table.basic{
-    @apply w-full bg-white rounded-sm shadow-md;
+    @apply w-full bg-white rounded-sm shadow-md bg-white rounded-sm;
 }
 table.basic thead tr td{
     @apply text-sm text-gray-600 uppercase border-b border-gray-200;
