@@ -102,8 +102,9 @@ export default function ProductForm({
 
             </select>
             {propertiesToFill.length > 0 && propertiesToFill.map(p => (
-                <div className="flex gap-1">
-                <div>{p.name}</div>
+                <div className="">
+                <label>{p.name[0].toUpperCase()+p.name.substring(1)}</label>
+                <div>
                 <select value={productProperties[p.name]} 
                 onChange={ev => 
                     setProductProp(p.name,ev.target.value)
@@ -113,6 +114,7 @@ export default function ProductForm({
                         <option value={v}>{v}</option>
                     ))}
                 </select>
+                </div>
                 </div>
             ))}
             <label>
@@ -124,7 +126,7 @@ export default function ProductForm({
             className="flex flex-wrap gap-1"
              setList={updateImagesOrder}>
             {!!images?.length && images.map(link => (
-                <div key={link} className="h-24">
+                <div key={link} className="h-24 bg-white p-4 shadow-sm rounded-sm border border-gray-200">
                     <img src={link} alt=""
                      className="rounded-lg"/>
                 </div>
@@ -136,7 +138,7 @@ export default function ProductForm({
                 </div>
             )}
                 <label className=" w-24 h-24 cursor-pointer flex items-center justify-center text-sm gap-1
-                text-gray-500 rounded-lg bg-gray-200">
+                text-gray-500 rounded-sm bg-white shadow-sm border border-gray-200">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 7.5h-.75A2.25 2.25 0 004.5 9.75v7.5a2.25 2.25 0 002.25 2.25h7.5a2.25 2.25 0 002.25-2.25v-7.5a2.25 2.25 0 00-2.25-2.25h-.75m0-3l-3-3m0 0l-3 3m3-3v11.25m6-2.25h.75a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-7.5a2.25 2.25 0 01-2.25-2.25v-.75" />
                 </svg>
