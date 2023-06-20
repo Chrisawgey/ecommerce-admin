@@ -23,8 +23,7 @@ export default function OrdersPage() {
                 <tbody>
                 {orders.length > 0 && orders.map(order =>(
                     <tr>
-                        <td>{order.createdAt
-                        .replace('T', ' ')}</td>
+                        <td>{(new Date(order.createdAt)).toLocaleString()}</td>
                         <td>
                             {order.name} {order.email}<br />
                             {order.city} {order.postalCode} {order.country}<br />
