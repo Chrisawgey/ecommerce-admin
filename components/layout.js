@@ -1,4 +1,4 @@
-import Nav from "@/components/nav";
+import Nav from "@/components/Nav"
 import { useSession, signIn, signOut } from "next-auth/react"
 import { useState } from "react";
 import Logo from "./Logo";
