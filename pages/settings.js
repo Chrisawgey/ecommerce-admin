@@ -7,42 +7,53 @@ import { withSwal } from "react-sweetalert2";
 function SettingsPage({swal}) {
   const [products, setProducts] = useState([]);
   const [featuredProductId, setFeaturedProductId] = useState('');
-  const [productsLoading, setProductsLoading] = useState(false);
-  const [featuredLoading, setFeaturedLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [shippingFee, setShippingFee] = useState('');
 
   useEffect(() => {
-    setProductsLoading(true);
-    axios.get('/api/products').then(res => {
-      setProducts(res.data);
-      setProductsLoading(false);
-
+    setIsLoading(true);
+    fetchAll().then(() => {
+      setIsLoading(false);
     });
-    setFeaturedLoading(true);
-    axios.get('/api/settings?name=featuredProductId').then(res => {
-      setFeaturedProductId(res.data.value);
-      setFeaturedLoading(false);
-    })
   }, []);
 
+  async function fetchAll() {
+    await axios.get('/api/products').then(res => {
+      setProducts(res.data);
+    });
+    await axios.get('/api/settings?name=featuredProductId').then(res => {
+      setFeaturedProductId(res.data.value);
+    });
+    await axios.get('/api/settings?name=shippingFee').then(res => {
+      setShippingFee(res.data.value);
+    });
+  }
+
   async function saveSettings(){
+    setIsLoading(true);
     await axios.put('/api/settings', {
       name: 'featuredProductId',
       value: featuredProductId,
-    }).then(() => {
-      swal.fire({
-        title: 'Settings Saved!',
-        icon: 'success',
-      })
+    });
+
+    await axios.put('/api/settings', {
+      name: 'shippingFee',
+      value: shippingFee,
+    });
+    setIsLoading(false);
+    await swal.fire({
+      title: 'Settings Saved!',
+      icon: 'success',
     });
   }
 
   return (
     <Layout>
       <h1>Settings</h1>
-      {(productsLoading || featuredLoading) && (
+      {isLoading && (
         <Spinner />
       )}
-      {(!productsLoading && !featuredLoading) && (
+      {!isLoading && (
         <>
         <label>Featured product</label>
       <select value={featuredProductId} onChange={ev => setFeaturedProductId(ev.target.value)}>
@@ -50,6 +61,11 @@ function SettingsPage({swal}) {
           <option value={product._id}>{product.title}</option>
         ))}
       </select>
+      <label>Shipping price (in usd)</label>
+          <input type="number"
+                 value={shippingFee}
+                 onChange={ev => setShippingFee(ev.target.value)}
+          />
       <div>
         <button onClick={saveSettings} className="btn-primary">Save Settings</button>
       </div>
